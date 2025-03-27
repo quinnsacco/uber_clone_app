@@ -1,4 +1,4 @@
-/* Make sure html/body have no forced background */
+/* Reset layout: no forced background, full viewport */
 html, body {
   margin: 0;
   padding: 0;
@@ -7,10 +7,11 @@ html, body {
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   background: none;
-  overflow: hidden; /* remove any scrollbars if not needed */
+  overflow: hidden;
+  color: #ffffff;
 }
 
-/* The map is fixed and always behind everything */
+/* Full-screen map */
 #map {
   position: fixed;
   top: 0;
@@ -20,7 +21,7 @@ html, body {
   z-index: 0;
 }
 
-/* Overlays for home screen, ride details, menu, etc. */
+/* Overlays on top of the map */
 #homeScreen, #rideDetails, #menu {
   position: absolute;
   top: 0;
@@ -31,15 +32,16 @@ html, body {
   background: transparent;
 }
 
-/* Overlay Panels */
-#searchBar, #rideOptions, #extraFeatures {
+/* Overlay panels styling */
+#searchBar, #rideOptions, #extraFeatures,
+#driverLogin, #driverPanel {
   position: absolute;
-  background: rgba(0,0,0,0.4); /* semi-transparent black, or 'none' if you want fully transparent */
+  background: rgba(0,0,0,0.4); /* semi-transparent background */
   padding: 10px;
   border-radius: 8px;
 }
 
-/* Search Bar at the top */
+/* Search Bar at the top center */
 #searchBar {
   top: 10px;
   left: 50%;
@@ -99,11 +101,12 @@ html, body {
   cursor: pointer;
 }
 
-/* Ride details screen covers everything when visible */
+/* Ride details screen */
 #rideDetails {
   display: none;
   background: rgba(0,0,0,0.7);
   overflow-y: auto;
+  z-index: 9999;
 }
 
 /* Driver icon styling */
