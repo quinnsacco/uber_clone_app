@@ -7,6 +7,9 @@
   <!-- Leaflet CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,7 +19,7 @@
     <input type="password" id="driverPassword" placeholder="Enter driver password">
     <button onclick="loginDriver()">Login</button>
   </div>
-  
+
   <!-- Driver Panel (hidden until login) -->
   <div id="driverPanel" style="display:none;">
     <h1>Driver Panel</h1>
@@ -28,7 +31,8 @@
     </div>
     <div id="driverOptions">
       <button onclick="viewProfileDriver()">View Profile</button>
-      <button onclick="toggleDriverLocation()">Toggle Driver Location</button>
+      <button onclick="toggleDriverLocation()">Toggle Driver Location Sharing</button>
+      <button onclick="shareLocationDriver()">Share My Location</button>
       <button onclick="logoutDriver()">Logout</button>
     </div>
   </div>

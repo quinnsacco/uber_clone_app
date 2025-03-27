@@ -7,6 +7,9 @@
   <!-- Leaflet CSS & JS for the map -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -33,10 +36,10 @@
     
     <!-- Extra Features -->
     <div id="extraFeatures">
-      <button onclick="shareLocation()">Share Location</button>
+      <button onclick="shareLocation()">Share My Location</button>
       <button onclick="emergency()">Emergency Assistance</button>
       <button onclick="checkIn()">Ride Check-In</button>
-      <button onclick="togglePassengerLocation()">Toggle My Location</button>
+      <button onclick="togglePassengerLocation()">Toggle My Location Sharing</button>
     </div>
   </div>
   
@@ -44,7 +47,7 @@
   <div id="rideDetails" style="display:none;">
     <h2>Ride in Progress</h2>
     <div id="driverInfo">
-      <img src="driver_profile.png" alt="Driver Profile" id="driverPic" style="width:50px;height:50px;">
+      <img src="driver_profile.png" alt="Driver Profile" id="driverPic" style="width:50px;height:50px;"> 
       <div id="driverDetails">
         <p>Name: Dragon Driver</p>
         <p>Rating: 5.0</p>

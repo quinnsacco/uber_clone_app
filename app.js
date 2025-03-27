@@ -1,5 +1,4 @@
 let map, driverMarker, passengerMarker;
-let rides = [];
 let driverLocationOn = true;
 let driverLocationIntervalId = null;
 let passengerLocationOn = true;
@@ -17,7 +16,6 @@ function requestRide() {
     return;
   }
   alert("Ride requested! The car is on its way (FREE).");
-  // Hide home screen and show ride details (simulate ride in progress)
   document.getElementById("homeScreen").style.display = "none";
   document.getElementById("rideDetails").style.display = "block";
 }
@@ -26,12 +24,9 @@ function scheduleRide() {
   alert("Scheduled Ride (FREE) - Feature coming soon!");
 }
 
-/* ---------- Passenger Location Toggle Functions ---------- */
-function startPassengerSimulation() {
-  if (passengerMarker) {
-    map.removeLayer(passengerMarker);
-  }
-  // Create a passenger marker using a "🙂" emoji
+/* ---------- Passenger Location Sharing ---------- */
+function startPassengerSharing() {
+  // In a real app, you'd get actual geolocation and push to server
   passengerMarker = L.marker([32.8423, -96.7847], {
     icon: L.divIcon({
       className: 'passenger-icon',
@@ -39,15 +34,17 @@ function startPassengerSimulation() {
       iconSize: [30, 30]
     })
   }).addTo(map);
-  passengerLocationIntervalId = setInterval(function(){
+
+  passengerLocationIntervalId = setInterval(() => {
     let lat = 32.8423 + (Math.random() - 0.5)/100;
     let lng = -96.7847 + (Math.random() - 0.5)/100;
     passengerMarker.setLatLng([lat, lng]);
   }, 5000);
+
   passengerLocationOn = true;
 }
 
-function stopPassengerSimulation() {
+function stopPassengerSharing() {
   if (passengerLocationIntervalId) {
     clearInterval(passengerLocationIntervalId);
     passengerLocationIntervalId = null;
@@ -61,36 +58,22 @@ function stopPassengerSimulation() {
 
 function togglePassengerLocation() {
   if (passengerLocationOn) {
-    stopPassengerSimulation();
-    alert("Passenger location sharing turned OFF.");
+    stopPassengerSharing();
+    alert("Passenger location sharing OFF.");
   } else {
-    startPassengerSimulation();
-    alert("Passenger location sharing turned ON.");
+    startPassengerSharing();
+    alert("Passenger location sharing ON.");
   }
 }
 
-/* ---------- Dummy Functions for Other Features ---------- */
-function shareLocation() { alert("Sharing location..."); }
-function emergency() { alert("Calling emergency services..."); }
-function checkIn() { alert("Checking in with your ride..."); }
-function messageDriver() { alert("Opening in-app chat with the driver..."); }
-function callDriver() { alert("Dialing the driver..."); }
-function shareTrip() { alert("Sharing trip details..."); }
-function addStop() { alert("Adding an extra stop..."); }
-function updateDropoff() { alert("Updating drop-off location..."); }
-function viewHistory() { alert("Displaying ride history..."); }
-function completeRide() {
-  alert("Ride complete! Thanks for riding (FREE).");
-  document.getElementById("rideDetails").style.display = "none";
-  document.getElementById("homeScreen").style.display = "block";
+function shareLocation() {
+  alert("Sharing real geolocation with the driver...");
+  // In a real app, you'd use navigator.geolocation.getCurrentPosition() 
+  // and send coords to a server or driver
 }
 
-/* ---------- Real-Time Tracking Simulation ---------- */
-function initHomeMap() {
-  map = L.map('map').setView([32.8423, -96.7847], 14);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-  // Create the driver marker with a dragon emoji
+/* ---------- Driver Location Simulation ---------- */
+function startDriverSimulation() {
   driverMarker = L.marker([32.8423, -96.7847], {
     icon: L.divIcon({
       className: 'driver-icon',
@@ -99,28 +82,24 @@ function initHomeMap() {
     })
   }).addTo(map);
 
-  // Start both simulations on load
-  startDriverSimulation();
-  startPassengerSimulation();
-}
-
-function startDriverSimulation() {
-  if (driverLocationIntervalId !== null) {
-    clearInterval(driverLocationIntervalId);
-  }
-  driverLocationOn = true;
-  driverLocationIntervalId = setInterval(function(){
+  driverLocationIntervalId = setInterval(() => {
     let lat = 32.8423 + (Math.random() - 0.5)/100;
     let lng = -96.7847 + (Math.random() - 0.5)/100;
     driverMarker.setLatLng([lat, lng]);
-    map.setView([lat, lng], 14);
+    // Removed map.setView(...) so it won't jump around
   }, 5000);
+
+  driverLocationOn = true;
 }
 
 function stopDriverSimulation() {
-  if (driverLocationIntervalId !== null) {
+  if (driverLocationIntervalId) {
     clearInterval(driverLocationIntervalId);
     driverLocationIntervalId = null;
+  }
+  if (driverMarker) {
+    map.removeLayer(driverMarker);
+    driverMarker = null;
   }
   driverLocationOn = false;
 }
@@ -128,19 +107,50 @@ function stopDriverSimulation() {
 function toggleDriverLocation() {
   if (driverLocationOn) {
     stopDriverSimulation();
-    alert("Driver location updates turned OFF.");
+    alert("Driver location OFF.");
   } else {
     startDriverSimulation();
-    alert("Driver location updates turned ON.");
+    alert("Driver location ON.");
   }
 }
 
-/* ---------- Driver Screen Functions ---------- */
+function shareLocationDriver() {
+  alert("Driver is sharing actual location with passenger...");
+  // Real usage would get driver geolocation, push to server
+}
+
+/* ---------- Misc. Functions ---------- */
+function emergency() { alert("Emergency services called."); }
+function checkIn() { alert("Ride check-in triggered."); }
+function messageDriver() { alert("Opening chat with driver..."); }
+function callDriver() { alert("Calling driver..."); }
+function shareTrip() { alert("Sharing trip link..."); }
+function addStop() { alert("Adding extra stop..."); }
+function updateDropoff() { alert("Updating drop-off location..."); }
+function viewHistory() { alert("Showing ride history..."); }
+function completeRide() {
+  alert("Ride complete! Thanks for riding (FREE).");
+  document.getElementById("rideDetails").style.display = "none";
+  document.getElementById("homeScreen").style.display = "block";
+}
+
+/* ---------- Map Init ---------- */
+function initHomeMap() {
+  map = L.map('map').setView([32.8423, -96.7847], 14);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+  // Start both simulations by default
+  startDriverSimulation();
+  startPassengerSharing();
+}
+
+/* ---------- Driver Screen ---------- */
 function loginDriver() {
   let pass = document.getElementById("driverPassword").value;
   if (pass === "dragon123") {
     document.getElementById("driverLogin").style.display = "none";
     document.getElementById("driverPanel").style.display = "block";
+    // In driver screen, you might want your own map
     initDriverMap();
   } else {
     alert("Wrong password. Access denied.");
@@ -150,6 +160,8 @@ function loginDriver() {
 function initDriverMap() {
   let dmap = L.map('driverMap').setView([32.8423, -96.7847], 14);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(dmap);
+
+  // Optionally place a static marker
   L.marker([32.8423, -96.7847], {
     icon: L.divIcon({
       className: 'driver-icon',
@@ -159,13 +171,13 @@ function initDriverMap() {
   }).addTo(dmap);
 }
 
-function acceptRide() { alert("Ride accepted! (FREE)"); }
-function viewProfileDriver() { alert("Displaying driver profile, ratings, and reviews..."); }
+function acceptRide() { alert("Ride accepted! (FREE)."); }
+function viewProfileDriver() { alert("Driver profile displayed."); }
 function logoutDriver() {
   alert("Driver logged out.");
   document.getElementById("driverPanel").style.display = "none";
   document.getElementById("driverLogin").style.display = "block";
 }
 
-// Initialize the home map when the page loads
+// On load, init map
 window.onload = initHomeMap;
