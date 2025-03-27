@@ -8,12 +8,6 @@ function selectLocation(loc) {
   document.getElementById("destination").value = loc;
 }
 
-// Simulate fare estimate and ETA calculation (dummy values)
-function updateRideInfo() {
-  document.getElementById("fare").innerText = (Math.random() * 20 + 10).toFixed(2);
-  document.getElementById("etaTime").innerText = Math.floor(Math.random() * 10 + 2);
-}
-
 // Called when "Request Ride" is pressed
 function requestRide() {
   let destination = document.getElementById("destination").value;
@@ -21,18 +15,17 @@ function requestRide() {
     alert("Please enter a destination.");
     return;
   }
-  updateRideInfo();
-  alert("Ride requested! The car is on its way.");
+  alert("Ride requested! The car is on its way (for FREE).");
   // Switch to ride details screen (simulate ride in progress)
   document.getElementById("homeScreen").style.display = "none";
   document.getElementById("rideDetails").style.display = "block";
-  // Map is already initialized, but let's keep the driver moving
+  // Map is already initialized, so just keep the driver moving
   startDriverSimulation();
 }
 
 // Dummy function for scheduled rides
 function scheduleRide() {
-  alert("Scheduled Ride: Feature coming soon!");
+  alert("Scheduled Ride (Free) - Feature coming soon!");
 }
 
 // Dummy functions for extra features
@@ -64,7 +57,7 @@ function viewHistory() {
   alert("Displaying your ride history and receipts...");
 }
 function completeRide() {
-  alert("Ride complete! Thank you for riding.");
+  alert("Ride complete! Thank you for riding (for FREE).");
   // Return to home screen
   document.getElementById("rideDetails").style.display = "none";
   document.getElementById("homeScreen").style.display = "block";
@@ -74,6 +67,7 @@ function completeRide() {
 
 // Create the map on page load
 function initHomeMap() {
+  // Full-screen map at SMU in Dallas
   map = L.map('map').setView([32.8423, -96.7847], 14);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
@@ -129,7 +123,7 @@ function initDriverMap() {
 
 // Dummy function to simulate accepting a ride
 function acceptRide() {
-  alert("Ride accepted! The ride is now on its way.");
+  alert("Ride accepted! The ride is now on its way (for FREE).");
 }
 
 // Dummy functions for driver options
