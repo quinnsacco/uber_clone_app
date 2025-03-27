@@ -7,18 +7,14 @@
   <!-- Leaflet CSS & JS for the map -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- The Map (Full Screen) -->
+  <!-- Full-Screen Map -->
   <div id="map"></div>
 
   <!-- Home Screen Overlays -->
   <div id="homeScreen">
-    <!-- Search Bar & Saved Locations -->
     <div id="searchBar">
       <input type="text" id="destination" placeholder="Where to?">
       <div id="savedLocations">
@@ -28,45 +24,45 @@
       </div>
     </div>
     
-    <!-- Bottom Panel: Ride Options -->
     <div id="rideOptions">
       <button onclick="requestRide()">Request Ride</button>
       <button onclick="scheduleRide()">Schedule Ride</button>
     </div>
     
-    <!-- Extra Features -->
     <div id="extraFeatures">
       <button onclick="shareLocation()">Share My Location</button>
       <button onclick="emergency()">Emergency Assistance</button>
       <button onclick="checkIn()">Ride Check-In</button>
-      <button onclick="togglePassengerLocation()">Toggle My Location Sharing</button>
+      <button onclick="togglePassengerLocation()">Toggle My Location</button>
     </div>
   </div>
   
-  <!-- Ride In Progress Screen (hidden initially) -->
+  <!-- Ride In Progress Bottom Sheet (hidden initially) -->
   <div id="rideDetails" style="display:none;">
-    <h2>Ride in Progress</h2>
-    <div id="driverInfo">
-      <img src="driver_profile.png" alt="Driver Profile" id="driverPic" style="width:50px;height:50px;"> 
-      <div id="driverDetails">
-        <p>Name: Dragon Driver</p>
-        <p>Rating: 5.0</p>
+    <div id="rideDetailsCard">
+      <h2>Ride in Progress</h2>
+      <div id="driverInfo">
+        <img src="driver_profile.png" alt="Driver Profile" id="driverPic">
+        <div id="driverDetails">
+          <p class="driverName">Dragon Driver</p>
+          <p class="driverRating">Rating: 5.0</p>
+        </div>
       </div>
-    </div>
-    <div id="communication">
-      <button onclick="messageDriver()">Message Driver</button>
-      <button onclick="callDriver()">Call Driver</button>
-      <button onclick="shareTrip()">Share Trip</button>
-    </div>
-    <div id="tripModifications">
-      <button onclick="addStop()">Add Stop</button>
-      <button onclick="updateDropoff()">Update Drop-off</button>
-    </div>
-    <div id="rideHistory">
-      <button onclick="viewHistory()">Ride History & Receipts</button>
-    </div>
-    <div id="completion">
-      <button onclick="completeRide()">Complete Ride</button>
+      <div id="communication">
+        <button onclick="messageDriver()">Message Driver</button>
+        <button onclick="callDriver()">Call Driver</button>
+        <button onclick="shareTrip()">Share Trip</button>
+      </div>
+      <div id="tripModifications">
+        <button onclick="addStop()">Add Stop</button>
+        <button onclick="updateDropoff()">Update Drop-off</button>
+      </div>
+      <div id="rideHistory">
+        <button onclick="viewHistory()">Ride History & Receipts</button>
+      </div>
+      <div id="completion">
+        <button onclick="completeRide()">Complete Ride</button>
+      </div>
     </div>
   </div>
   
