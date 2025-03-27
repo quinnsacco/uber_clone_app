@@ -20,7 +20,7 @@
   <!-- Driver Panel (hidden until login) -->
   <div id="driverPanel" style="display:none;">
     <h1>Driver Panel</h1>
-    <div id="driverMap" style="height:300px;"></div>
+    <div id="driverMap" style="height:100vh;"></div>
     <div id="rideRequests">
       <h2>Ride Requests</h2>
       <ul id="rideRequestList"></ul>
@@ -28,6 +28,7 @@
     </div>
     <div id="driverOptions">
       <button onclick="viewProfileDriver()">View Profile</button>
+      <button onclick="toggleDriverLocation()">Toggle Driver Location</button>
       <button onclick="logoutDriver()">Logout</button>
     </div>
   </div>
