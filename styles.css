@@ -1,4 +1,4 @@
-/* Reset page layout */
+/* Make sure html/body have no forced background */
 html, body {
   margin: 0;
   padding: 0;
@@ -6,40 +6,40 @@ html, body {
   height: 100%;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
-  background-color: #121212; /* fallback background */
-  color: #ffffff;
+  background: none;
+  overflow: hidden; /* remove any scrollbars if not needed */
 }
 
-/* The map is fixed so it always fills the entire viewport */
+/* The map is fixed and always behind everything */
 #map {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 0; /* behind everything */
+  z-index: 0;
 }
 
-/* Everything else is overlayed above the map */
+/* Overlays for home screen, ride details, menu, etc. */
 #homeScreen, #rideDetails, #menu {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; /* above the map */
-  background: transparent; /* so map shows through */
+  z-index: 1;
+  background: transparent;
 }
 
-/* Overlays for search bar, ride options, etc. */
-#searchBar, #rideOptions, #extraFeatures,
-#driverLogin, #driverPanel {
+/* Overlay Panels */
+#searchBar, #rideOptions, #extraFeatures {
   position: absolute;
-  z-index: 999;
-  background: rgba(0,0,0,0.4); /* translucent black to see map behind */
+  background: rgba(0,0,0,0.4); /* semi-transparent black, or 'none' if you want fully transparent */
   padding: 10px;
   border-radius: 8px;
 }
 
-/* Search Bar */
+/* Search Bar at the top */
 #searchBar {
   top: 10px;
   left: 50%;
@@ -65,7 +65,7 @@ html, body {
   cursor: pointer;
 }
 
-/* Bottom Panel for ride options */
+/* Ride Options at the bottom center */
 #rideOptions {
   bottom: 20px;
   left: 50%;
@@ -82,9 +82,9 @@ html, body {
   cursor: pointer;
 }
 
-/* Extra features above the ride options */
+/* Extra Features above ride options */
 #extraFeatures {
-  bottom: 100px;
+  bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -99,18 +99,11 @@ html, body {
   cursor: pointer;
 }
 
-/* Ride details screen styling */
+/* Ride details screen covers everything when visible */
 #rideDetails {
   display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 20px;
   background: rgba(0,0,0,0.7);
-  width: 100%;
-  height: 100%;
   overflow-y: auto;
-  z-index: 9999;
 }
 
 /* Driver icon styling */
