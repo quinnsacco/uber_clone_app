@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Driver Panel - Uber Clone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Driver Login Screen -->
+  <div id="driverLogin">
+    <h1>Driver Login</h1>
+    <input type="password" id="driverPassword" placeholder="Enter driver password">
+    <button onclick="loginDriver()">Login</button>
+  </div>
+  
+  <!-- Driver Panel (hidden until login) -->
+  <div id="driverPanel" style="display:none;">
+    <h1>Driver Panel</h1>
+    <div id="driverMap" style="height:300px;"></div>
+    <div id="rideRequests">
+      <h2>Ride Requests</h2>
+      <ul id="rideRequestList"></ul>
+      <button onclick="acceptRide()">Accept Ride</button>
+    </div>
+    <div id="driverOptions">
+      <button onclick="viewProfileDriver()">View Profile</button>
+      <button onclick="logoutDriver()">Logout</button>
+    </div>
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html>

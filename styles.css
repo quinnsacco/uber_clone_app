@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+}
+#map, #driverMap {
+  height: 50vh;
+  width: 100%;
+}
+#searchBar {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  z-index: 1000;
+}
+#searchBar input {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+}
+#savedLocations {
+  margin-top: 5px;
+}
+#savedLocations button {
+  padding: 8px 12px;
+  margin: 2px;
+  border: none;
+  border-radius: 5px;
+  background-color: #00aaff;
+  color: #ffffff;
+  cursor: pointer;
+}
+#rideOptions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-top: 1px solid #444;
+  display: flex;
+  justify-content: space-around;
+  z-index: 1000;
+}
+#rideOptions button {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #00aaff;
+  color: #ffffff;
+  cursor: pointer;
+}
+#extraFeatures {
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 1000;
+}
+#extraFeatures button {
+  padding: 8px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0088cc;
+  color: #ffffff;
+  cursor: pointer;
+}
+#rideDetails, #menu {
+  padding: 20px;
+}
+button {
+  cursor: pointer;
+}
+.driver-icon {
+  font-size: 30px;
+}
